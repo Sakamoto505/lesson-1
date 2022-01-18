@@ -8,7 +8,7 @@ dis = b * b - 4 * a * c
 if dis < 0 
   puts "Нет корней"
 elsif dis == 0 
-  x = -b/2 * a
+  x = -b / 2 * a
 
   puts "Есть только один корень #{x}"
 else 
