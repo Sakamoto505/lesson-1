@@ -4,13 +4,7 @@ class Route
   attr_reader :stations
 
   def initialize(first, last)
-    if first == last
-
-    else
-
-      @stations = [first, last]
-
-    end
+    @stations = [first, last]
   end
 
   def add_station(station)
@@ -20,10 +14,11 @@ class Route
   def delete_station(station)
     if station == stations.first
 
-      elsif station == stations.last
+    elsif station == stations.last
 
     else
       stations.delete(station)
+
     end
   end
 end

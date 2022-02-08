@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'pry'
 class Train
   attr_reader :number, :type, :wagons, :current_speed, :current_station, :route
@@ -33,7 +34,7 @@ class Train
 
     else
       @wagons -= 1
-      
+
     end
   end
 
@@ -41,7 +42,6 @@ class Train
     @route = route
     route.stations.first.add_train(self)
     @current_station = route.stations.first
-
   end
 
   def go_to_prev_station
@@ -50,7 +50,6 @@ class Train
       @current_station = @route.stations[prev_step]
       @current_station.add_train(self)
 
-    else
     end
   end
 
@@ -60,31 +59,27 @@ class Train
       @current_station = @route.stations[next_step]
       @current_station.add_train(self)
 
-    else
     end
   end
 
   def next_station
     return nil if current_station_index == @route.stations.count - 1
+
     @route.stations[current_station_index + 1]
   end
 
   def prev_station
     return nil if current_station_index.zero?
+
     @route.stations[current_station_index - 1]
   end
-
 
   def station_show
     current_station_index = @route.stations.index(@current_station)
 
-    if current_station != route.stations.first
-      prev_station =  @route.stations[current_station_index - 1]
-    end
+    prev_station =  @route.stations[current_station_index - 1] if current_station != route.stations.first
 
-    if current_station != route.stations.last
-      next_station =  @route.stations[current_station_index + 1]
-    end
+    next_station =  @route.stations[current_station_index + 1] if current_station != route.stations.last
   end
 
   private
@@ -92,5 +87,4 @@ class Train
   def current_station_index
     @route.stations.index(@current_station)
   end
-
 end
