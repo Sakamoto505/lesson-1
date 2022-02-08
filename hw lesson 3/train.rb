@@ -49,7 +49,6 @@ class Train
       prev_step = @route.stations.index(@current_station) - 1
       @current_station = @route.stations[prev_step]
       @current_station.add_train(self)
-
     end
   end
 
@@ -58,7 +57,6 @@ class Train
       next_step = @route.stations.index(@current_station) + 1
       @current_station = @route.stations[next_step]
       @current_station.add_train(self)
-
     end
   end
 
