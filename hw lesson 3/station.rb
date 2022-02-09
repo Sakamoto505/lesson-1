@@ -13,7 +13,7 @@ class Station
     @trains << train
   end
 
-  def send_trains(train)
+  def send_train(train)
     @trains.delete(train)
   end
 

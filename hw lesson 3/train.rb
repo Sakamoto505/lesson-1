@@ -28,14 +28,7 @@ class Train
 
   # отцеплять вагоны
   def detach_wagon
-    if !speed.zero? # поезд не остановлен
-
-    elsif @wagons.zero? # вагонов не осталось
-
-    else
-      @wagons -= 1
-
-    end
+    @wagons -= 1 if current_speed.zero? && wagons.nonzero?
   end
 
   def getting_route(route)
@@ -46,38 +39,34 @@ class Train
 
   def go_to_prev_station
     if @current_station != @route.stations.first
-      prev_step = @route.stations.index(@current_station) - 1
-      @current_station = @route.stations[prev_step]
+      @current_station.send_train(self)
+      @current_station = prev_station
       @current_station.add_train(self)
+
+      @current_station
     end
   end
 
   def go_to_next_station
     if @current_station != @route.stations.last
-      next_step = @route.stations.index(@current_station) + 1
-      @current_station = @route.stations[next_step]
+      @current_station.send_train(self)
+      @current_station = next_station
       @current_station.add_train(self)
+
+      @current_station
     end
   end
 
   def next_station
-    return nil if current_station_index == @route.stations.count - 1
+    return if current_station_index == @route.stations.count - 1
 
     @route.stations[current_station_index + 1]
   end
 
   def prev_station
-    return nil if current_station_index.zero?
+    return if current_station_index.zero?
 
     @route.stations[current_station_index - 1]
-  end
-
-  def station_show
-    current_station_index = @route.stations.index(@current_station)
-
-    prev_station =  @route.stations[current_station_index - 1] if current_station != route.stations.first
-
-    next_station =  @route.stations[current_station_index + 1] if current_station != route.stations.last
   end
 
   private

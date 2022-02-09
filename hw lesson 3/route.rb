@@ -12,13 +12,6 @@ class Route
   end
 
   def delete_station(station)
-    if station == stations.first
-
-    elsif station == stations.last
-
-    else
-      stations.delete(station)
-
-    end
+    stations.delete(station) unless station == station.first || station == stations.last
   end
 end
