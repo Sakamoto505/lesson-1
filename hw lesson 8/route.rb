@@ -43,6 +43,7 @@ class Route
     false
   end
 
+
   def validate!
     raise 'Маршрут должен состоять больше двух станций' if stations.size < 2
     raise 'Начальная и конечная не должны совпадать' if @stations.first == @stations.last
